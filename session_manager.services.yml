@@ -1,6 +1,9 @@
 services:
   session_manager.event_subscriber:
     class: Drupal\session_manager\EventSubscriber\SessionManagerEventSubscriber
-    arguments: ['@session']
+    arguments: ['@session_manager.session_manager']
     tags:
       - { name: event_subscriber }
+  session_manager.session_manager:
+    class: Drupal\session_manager\SessionManagerService
+    arguments: ['@session', '@database', '@request_stack']

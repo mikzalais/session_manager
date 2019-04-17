@@ -3,9 +3,11 @@
 namespace Drupal\session_manager\EventSubscriber;
 
 use Drupal\session_manager\Event\SessionManagerUserLoginEvent;
+use Drupal\session_manager\Event\SessionManagerUserLogoutEvent;
+use Drupal\session_manager\SessionManagerService;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\Event;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
  * Class SessionManagerEventSubscriber.
@@ -13,17 +15,15 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class SessionManagerEventSubscriber implements EventSubscriberInterface {
 
   /**
-   * Symfony\Component\HttpFoundation\Session\SessionInterface definition.
-   *
-   * @var \Symfony\Component\HttpFoundation\Session\SessionInterface
+   * @var \Drupal\session_manager\SessionManagerService
    */
-  protected $session;
+  protected $SessionManagerService;
 
   /**
    * Constructs a new SessionManagerEventSubscriber object.
    */
-  public function __construct(SessionInterface $session) {
-    $this->session = $session;
+  public function __construct(SessionManagerService $session_manager) {
+    $this->SessionManagerService = $session_manager;
   }
 
   /**
@@ -31,6 +31,8 @@ class SessionManagerEventSubscriber implements EventSubscriberInterface {
    */
   public static function getSubscribedEvents() {
     $events[SessionManagerUserLoginEvent::EVENT_NAME] = ['prepareSessionInfo'];
+    $events[SessionManagerUserLogoutEvent::EVENT_NAME] = ['removeSessionInfo'];
+//    $events[KernelEvents::REQUEST] = ['currentSession'];
 
     return $events;
   }
@@ -45,7 +47,14 @@ class SessionManagerEventSubscriber implements EventSubscriberInterface {
    *   Event object.
    */
   public function prepareSessionInfo(Event $event) {
-    drupal_set_message('Event session_manager_user_login thrown by Subscriber in module session_manager.', 'status', TRUE);
+    $this->SessionManagerService->setSessionInfo();
+  }
+
+  public function removeSessionInfo(Event $event) {
+    $this->SessionManagerService->removeSessionInfo();
+  }
+
+  public function currentSession(Event $event) {
   }
 
 }
