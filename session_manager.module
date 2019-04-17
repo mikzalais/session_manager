@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains session_manager.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function session_manager_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the session_manager module.
+    case 'help.page.session_manager':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Provides UI for user session management') . '</p>';
+      return $output;
+
+    default:
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "drupal/session_manager",
+  "type": "drupal-module",
+  "description": "Provides UI for user session management",
+  "license": "GPL-2.0+",
+  "minimum-stability": "dev",
+  "require": { },
+  "authors": [
+    {
+      "name": "Mārtiņš Bērtiņš",
+      "email": "martins.bertins@wunder.io"
+    }
+  ]
+}

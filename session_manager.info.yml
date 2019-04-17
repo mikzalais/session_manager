@@ -1,0 +1,7 @@
+name: 'Session Manager'
+type: module
+description: 'Provides UI for user session management'
+core: 8.x
+package: 'Administration'
+dependencies:
+  - views
