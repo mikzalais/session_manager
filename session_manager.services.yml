@@ -1,0 +1,6 @@
+services:
+  session_manager.event_subscriber:
+    class: Drupal\session_manager\EventSubscriber\SessionManagerEventSubscriber
+    arguments: ['@session']
+    tags:
+      - { name: event_subscriber }
