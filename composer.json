@@ -1,5 +1,5 @@
 {
-  "name": "drupal/session_manager",
+  "name": "wunderio/session_manager",
   "type": "drupal-module",
   "description": "Provides UI for user session management",
   "license": "GPL-2.0+",
