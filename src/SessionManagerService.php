@@ -38,6 +38,11 @@ class SessionManagerService {
     $this->requestStack = $request_stack;
   }
 
+  /**
+   * Writes additional session data to database.
+   *
+   * @throws \Exception
+   */
   public function setSessionInfo() {
     $session_id = Crypt::hashBase64($this->session->getId());
     $user_agent = $this->requestStack->getCurrentRequest()->headers->get('User-Agent');
@@ -50,6 +55,9 @@ class SessionManagerService {
     $query->execute();
   }
 
+  /**
+   * Removes session related data from database.
+   */
   public function removeSessionInfo() {
     $session_id = Crypt::hashBase64($this->session->getId());
     // Delete data from database.
