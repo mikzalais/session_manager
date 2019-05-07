@@ -18,7 +18,7 @@ function session_manager_views_data() {
         'title' => t('User ID'),
         'help' => t('Relate sessions data to a user'),
         'relationship' => [
-          'base' => 'users',
+          'base' => 'users_field_data',
           'base field' => 'uid',
           'id' => 'standard',
           'label' => t('User'),
