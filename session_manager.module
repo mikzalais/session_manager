@@ -35,7 +35,7 @@ function session_manager_user_login(UserInterface $account) {
   $event = new SessionManagerUserLoginEvent($account);
   // Get the event_dispatcher server and dispatch the event.
   $event_dispatcher = \Drupal::service('event_dispatcher');
-  $event_dispatcher->dispatch(SessionManagerUserLoginEvent::EVENT_NAME, $event);
+  $event_dispatcher->dispatch($event, SessionManagerUserLoginEvent::EVENT_NAME);
 }
 
 /**
@@ -46,5 +46,5 @@ function session_manager_user_logout(AccountInterface $account) {
   $event = new SessionManagerUserLogoutEvent();
   // Get the event_dispatcher server and dispatch the event.
   $event_dispatcher = \Drupal::service('event_dispatcher');
-  $event_dispatcher->dispatch(SessionManagerUserLogoutEvent::EVENT_NAME, $event);
+  $event_dispatcher->dispatch($event, SessionManagerUserLogoutEvent::EVENT_NAME);
 }
