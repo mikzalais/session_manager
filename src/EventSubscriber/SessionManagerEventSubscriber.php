@@ -6,7 +6,7 @@ use Drupal\session_manager\Event\SessionManagerUserLoginEvent;
 use Drupal\session_manager\Event\SessionManagerUserLogoutEvent;
 use Drupal\session_manager\SessionManagerService;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\EventDispatcher\Event;
+use Drupal\Component\EventDispatcher\Event;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
