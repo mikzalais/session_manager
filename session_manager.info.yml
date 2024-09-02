@@ -1,7 +1,7 @@
 name: 'Session Manager'
 type: module
 description: 'Provides UI for logged in user session management'
-core_version_requirement: ^8 || ^9 || ^10
+core_version_requirement: ^10
 package: 'Administration'
 dependencies:
   - views
