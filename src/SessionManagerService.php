@@ -44,7 +44,8 @@ class SessionManagerService {
    * @throws \Exception
    */
   public function setSessionInfo() {
-    $session_id = Crypt::hashBase64($this->session->getId());
+    $session_id = Crypt::randomBytesBase64();
+    $this->session->set('session_manager.user.identifier', $session_id);
     $user_agent = $this->requestStack->getCurrentRequest()->headers->get('User-Agent');
     // Save data to database.
     $query = $this->database->insert('session_manager');
@@ -59,7 +60,7 @@ class SessionManagerService {
    * Removes session related data from database.
    */
   public function removeSessionInfo() {
-    $session_id = Crypt::hashBase64($this->session->getId());
+    $session_id = $this->session->get('session_manager.user.identifier');
     // Delete data from database.
     $query = $this->database->delete('session_manager');
     $query->condition('sid', $session_id);
